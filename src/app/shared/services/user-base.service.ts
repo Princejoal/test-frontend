@@ -22,7 +22,7 @@ export class UserBaseService extends ApiServiceService {
    return this.eventEmitter;
  }
   login(data :any): Observable<any>{
-    return this.http.post('http://localhost:3000/api/v1/login',data,this.post()).map((res)=>{
+    return this.http.post('https://test-chandu.herokuapp.com/api/v1/login',data,this.post()).map((res)=>{
       console.log(res)
       return res.json()
     }).catch((error)=>{
@@ -41,7 +41,7 @@ export class UserBaseService extends ApiServiceService {
   }
 
   submitPost(data){
-    return this.http.post('http://localhost:3000/api/v1/submitPost',data,this.post()).map((res)=>{
+    return this.http.post('https://test-chandu.herokuapp.com/api/v1/submitPost',data,this.post()).map((res)=>{
       console.log(res)
       return res.json()
     }).catch((error)=>{
@@ -50,7 +50,7 @@ export class UserBaseService extends ApiServiceService {
   }
 
   getPosts(){
-    return this.http.get('http://localhost:3000/api/v1/getPosts',this.get()).map((res)=>{
+    return this.http.get('https://test-chandu.herokuapp.com/api/v1/getPosts',this.get()).map((res)=>{
       console.log(res)
       return res.json()
     }).catch((error)=>{
@@ -59,7 +59,7 @@ export class UserBaseService extends ApiServiceService {
   }
 
   getTeamStats(){
-    return this.http.get('http://localhost:3000/api/v1/getTeamStats',this.get()).map((res)=>{
+    return this.http.get('https://test-chandu.herokuapp.com/api/v1/getTeamStats',this.get()).map((res)=>{
       console.log(res)
       return res.json()
     }).catch((error)=>{
