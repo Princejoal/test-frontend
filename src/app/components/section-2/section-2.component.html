@@ -1,0 +1,73 @@
+<div class="ui very padded container segment" style=" margin-top: 5%;overflow:scroll;height:600px">
+<div *ngIf="showComponent" class="jumbotron">
+  <p>Registration</p>
+    <form [formGroup]="submitForm" id="form" (ngSubmit)="onSubmit()">
+        <!-- <div *ngIf="isLoginError" class="alert alert-danger custom-alert">
+          <i class="material-icons">report_problem</i>
+          <span id="server-error-msg">{{ErrorMsg}}</span>
+        </div> -->
+        <div class="form-group">
+          <input id="name" type="text" class="form-control" name="name" placeholder="Your organization name"
+            formControlName="name" tabindex="1" />
+          <span class="input-icon-msg">
+            <div class="popover-block" *ngIf="(submitForm.controls.name.dirty && !submitForm.controls.name.valid)">
+              <span *ngIf="submitForm.controls.name.errors.required">
+                Name is required.
+              </span>
+              <span *ngIf="submitForm.controls.name.errors.minlength">
+                Invalid name.
+              </span>
+            </div>
+          </span>
+        </div>
+        <div class="form-group">
+            <textarea id="description" type="text" class="form-control" name="description" placeholder="Your organization description"
+              formControlName="description" tabindex="1"></textarea> 
+            <span class="input-icon-msg">
+              <div class="popover-block" *ngIf="(submitForm.controls.description.dirty && !submitForm.controls.description.valid)">
+                <span *ngIf="submitForm.controls.description.errors.required">
+                  Description is required.
+                </span>
+                <span *ngIf="submitForm.controls.description.errors.maxlength">
+                  Description must be under 100 characters.
+                </span>
+              </div>
+            </span>
+          </div>
+          <div class="form-group">
+              <select formControlName="team">
+                  <option [value]="team" *ngFor="let team of teams">{{team}}</option>
+                </select>
+              <span class="input-icon-msg">
+                <div class="popover-block" *ngIf="(submitForm.controls.description.dirty && !submitForm.controls.description.valid)">
+                  <span *ngIf="submitForm.controls.description.errors.required">
+                    Description is required.
+                  </span>
+                  <span *ngIf="submitForm.controls.description.errors.maxlength">
+                    Description must be under 100 characters.
+                  </span>
+                </div>
+              </span>
+            </div>
+            <div class="form-group">
+                <select formControlName="campaign">
+                    <option [value]="campaign" *ngFor="let campaign of campaigns">{{campaign}}</option>
+                  </select>
+                <!-- <span class="input-icon-msg">
+                  <div class="popover-block" *ngIf="(submitForm.controls.description.dirty && !submitForm.controls.description.valid)">
+                    <span *ngIf="submitForm.controls.description.errors.required">
+                      Description is required.
+                    </span>
+                    <span *ngIf="submitForm.controls.description.errors.maxlength">
+                      Description must be under 100 characters.
+                    </span>
+                  </div>
+                </span> -->
+              </div>
+        <button type="submit" [disabled]="!submitForm.valid" class="btn btn-red-filled btn-hover"
+          id='loginSubmit'>Share
+        </button>
+      
+      </form>
+</div>
+</div>

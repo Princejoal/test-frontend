@@ -1,0 +1,22 @@
+<div class="ui grid">
+    <div class="ui blue inverted fixed menu navbar page grid">
+    <p>Welcome {{storage?.user?.userName}}</p>
+    <div class="right menu">
+      <a href="" routerLink="/logout" class="item">Logout</a>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid" style="background-color:#e9ecef;margin-top:35px">
+    <div class="row">
+        <div class="col-md-4" >
+            <app-section-2 [role]="role"></app-section-2>
+        </div>
+        <div class="col-md-4">
+            <app-section-1 [role]="role"></app-section-1>
+        </div>
+        <div class="col-md-4">
+            <app-section-3 [role]="role"></app-section-3>
+        </div>
+    </div>
+</div>

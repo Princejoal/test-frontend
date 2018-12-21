@@ -1,0 +1,18 @@
+<div class="ui very padded container segment" style=" margin-top: 5%;overflow:scroll;height:600px">
+  <h1>Registered Teams</h1>
+  <div class="ui items" *ngIf="showComponent">
+    <div class="item" *ngFor="let post of posts  | paginate: { itemsPerPage: 3, currentPage: p }">
+      <div class="ui card">
+        <div class="content">
+          <div class="header">{{post.name}}</div>
+          <div class="meta">
+            <span>{{post.team}}</span>
+            <a>{{post.campaign}}</a>
+          </div>
+          <p>{{post.description}}</p>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

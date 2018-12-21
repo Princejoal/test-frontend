@@ -1,0 +1,12 @@
+<div *ngIf="showComponent" style="overflow:scroll;height:600px">
+    <div id="map">
+        <h1 style="margin-top:5px;text-align:center">Current Location</h1>
+        <agm-map [latitude]="lat" [longitude]="lng"  style="height:200px">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+    </div>
+    <hr>
+  <div *ngIf="chart">
+      <canvas id="myChart" width="800" height="550">{{ chart }}</canvas>
+  </div>
+</div>
