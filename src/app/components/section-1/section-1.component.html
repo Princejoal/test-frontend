@@ -1,6 +1,6 @@
-<div class="ui very padded container segment" style=" margin-top: 5%;overflow:scroll;height:600px">
+<div *ngIf="showComponent" class="ui very padded container segment" style=" margin-top: 5%;overflow:scroll;height:600px">
   <h1>Registered Teams</h1>
-  <div class="ui items" *ngIf="showComponent">
+  <div class="ui items">
     <div class="item" *ngFor="let post of posts  | paginate: { itemsPerPage: 3, currentPage: p }">
       <div class="ui card">
         <div class="content">

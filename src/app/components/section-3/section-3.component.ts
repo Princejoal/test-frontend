@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import Chart from 'chart.js';
 import { UserBaseService } from 'src/app/shared/services/user-base.service';
 
@@ -8,7 +8,7 @@ declare var document:any
   templateUrl: './section-3.component.html',
   styleUrls: ['./section-3.component.css']
 })
-export class Section3Component implements OnInit, OnChanges, AfterViewInit {
+export class Section3Component implements OnInit, OnChanges {
   @Input() role;
   showComponent: boolean = false;
   chart: any=[];
@@ -35,14 +35,11 @@ export class Section3Component implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  ngAfterViewInit(){
-    this.getTeamStats();
-  }
-
   ngOnChanges(){
     console.log('Section 3-role:',this.role)
     if(this.role==='Director' || this.role ==='Senior Associate' || this.role==='Associate'){
       this.showComponent = true;
+      this.getTeamStats();
     }
   }
 
