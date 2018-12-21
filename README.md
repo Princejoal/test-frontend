@@ -1,5 +1,5 @@
 # test-frontend 
-Live Link - https://test-chandufront.herokuapp.com/dashboard
+Live Link - https://test-chandufront.herokuapp.com
 
 You must be having these versions inorder to run this project in local
 Angular Version - 6.2.5
