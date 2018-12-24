@@ -27,8 +27,8 @@ export class Section2Component implements OnInit, OnChanges {
     this.submitForm = this.fb.group({
       'name': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       'description':['', Validators.compose([Validators.required, Validators.maxLength(100)])],
-      'team': [''],
-      'campaign': ['']
+      'team': ['', Validators.compose([Validators.required])],
+      'campaign': ['', Validators.compose([Validators.required])]
     });
   }
   ngOnChanges(){

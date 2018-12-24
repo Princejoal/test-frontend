@@ -1,0 +1,40 @@
+.logo {
+  content: url('./../../assets/images/outgrow-logo.png');
+  height: 50px;
+  margin: 16px;
+}
+.logo_responsive {
+  content: url('./../../assets/images/og-logo.png');
+  height: 25px;
+  margin: 10px;
+  margin-left: 28px;
+}
+:host ::ng-deep .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+:host ::ng-deep .trigger:hover {
+  color: #1890ff;
+}
+
+.nav1-style{ margin-left:200px !important;padding:0;}
+.nav2-style{ margin-left:80px !important;padding:0;}
+[nz-button] {
+  float: right;
+  margin : 15px
+}
+.ant-menu-item.ant-menu-item-selected{
+border-color: aliceblue
+}
+.anticon-warning {
+  font-size: 15px;
+  color: red;
+}
+.error-msg {
+    margin: 2%;
+    font-size: 15px;
+}

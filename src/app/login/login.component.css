@@ -1,7 +1,69 @@
-p{
-    color : red;
+.top-container {
+  width: 100%;
+  height: 100%;
+  background-image: url('./../../assets/home.jpg');
+  opacity: 0.8;
 }
-label{
-    font-size: 30px;
-    color: white;
+.middle_content {
+  max-width: 320px;
+  margin: 0 auto;
+}
+.login_div {
+  text-align: center;
+  color: #495057;
+  background: #f8f9fa;
+  margin-bottom: 15px;
+  height: 40px;
+  line-height: 2.5;
+  font-weight: 600;
+}
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+[nz-button] {
+ margin-top: 20px ;
+ width: 100%;
+ height: 42px;
+
+}
+.ant-input {height: 35px !important;}
+
+.anticon-edit, .anticon-user, .anticon-lock {
+  color: #1890ff;
+}
+.forgot_password {
+  color: #ced4da;
+  font-size: .8rem;
+  font-weight: 400;
+}
+.ant-btn-primary[disabled] {
+  color: white;
+  background-color: #1890ff;
+  border-color: #1890ff
+}
+.ant-btn-primary[disabled]:hover {
+  color: white;
+  background-color: #46a6ff;
+  border-color: #46a6ff
+}
+::ng-deep .vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .vertical-center-modal .ant-modal {
+  top: 0;
+}
+.anticon-warning {
+  font-size: 15px;
+  color: red;
+}
+.error-msg {
+    margin: 2%;
+    font-size: 15px;
 }

@@ -1,73 +1,57 @@
-<div class="ui very padded container segment" style=" margin-top: 5%;overflow:scroll;height:600px">
-<div *ngIf="showComponent" class="jumbotron">
-  <p>Registration</p>
-    <form [formGroup]="submitForm" id="form" (ngSubmit)="onSubmit()">
-        <!-- <div *ngIf="isLoginError" class="alert alert-danger custom-alert">
-          <i class="material-icons">report_problem</i>
-          <span id="server-error-msg">{{ErrorMsg}}</span>
-        </div> -->
-        <div class="form-group">
-          <input id="name" type="text" class="form-control" name="name" placeholder="Your organization name"
-            formControlName="name" tabindex="1" />
-          <span class="input-icon-msg">
-            <div class="popover-block" *ngIf="(submitForm.controls.name.dirty && !submitForm.controls.name.valid)">
-              <span *ngIf="submitForm.controls.name.errors.required">
-                Name is required.
-              </span>
-              <span *ngIf="submitForm.controls.name.errors.minlength">
-                Invalid name.
-              </span>
-            </div>
-          </span>
-        </div>
-        <div class="form-group">
-            <textarea id="description" type="text" class="form-control" name="description" placeholder="Your organization description"
-              formControlName="description" tabindex="1"></textarea> 
-            <span class="input-icon-msg">
-              <div class="popover-block" *ngIf="(submitForm.controls.description.dirty && !submitForm.controls.description.valid)">
-                <span *ngIf="submitForm.controls.description.errors.required">
-                  Description is required.
-                </span>
-                <span *ngIf="submitForm.controls.description.errors.maxlength">
-                  Description must be under 100 characters.
-                </span>
-              </div>
-            </span>
-          </div>
-          <div class="form-group">
-              <select formControlName="team">
-                  <option [value]="team" *ngFor="let team of teams">{{team}}</option>
-                </select>
-              <span class="input-icon-msg">
-                <div class="popover-block" *ngIf="(submitForm.controls.description.dirty && !submitForm.controls.description.valid)">
-                  <span *ngIf="submitForm.controls.description.errors.required">
-                    Description is required.
-                  </span>
-                  <span *ngIf="submitForm.controls.description.errors.maxlength">
-                    Description must be under 100 characters.
-                  </span>
-                </div>
-              </span>
-            </div>
-            <div class="form-group">
-                <select formControlName="campaign">
-                    <option [value]="campaign" *ngFor="let campaign of campaigns">{{campaign}}</option>
-                  </select>
-                <!-- <span class="input-icon-msg">
-                  <div class="popover-block" *ngIf="(submitForm.controls.description.dirty && !submitForm.controls.description.valid)">
-                    <span *ngIf="submitForm.controls.description.errors.required">
-                      Description is required.
-                    </span>
-                    <span *ngIf="submitForm.controls.description.errors.maxlength">
-                      Description must be under 100 characters.
-                    </span>
-                  </div>
-                </span> -->
-              </div>
-        <button type="submit" [disabled]="!submitForm.valid" class="btn btn-red-filled btn-hover"
-          id='loginSubmit'>Share
-        </button>
-      
-      </form>
+<div class="middle_content">
+  <div class="login_div"><i class="anticon anticon-edit"></i> <span>
+      Registration</span></div>
+  <form nz-form [formGroup]="submitForm" class="login-form" (ngSubmit)="onSubmit()">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group [nzPrefix]="prefixNameTemplate">
+          <input type="text" nz-input formControlName="name" placeholder="Organization Name">
+        </nz-input-group>
+        <ng-template #prefixNameTemplate><i nz-icon type="user"></i></ng-template>
+        <nz-form-explain *ngIf="submitForm.get('name').dirty &&
+        submitForm.get('name').errors">Organization Name should be more than 3 letters!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group [nzPrefix]="prefixDescriptionTemplate">
+          <input type="description" nz-input formControlName="description" placeholder="Organization Description">
+        </nz-input-group>
+        <ng-template #prefixDescriptionTemplate><i nz-icon type="lock"></i></ng-template>
+        <nz-form-explain *ngIf="submitForm.get('description').dirty &&
+        submitForm.get('description').errors">Description should be atmost 100 characters only!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" nzFor="team" nzRequired>Team</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <nz-select id="team" formControlName="team" nzPlaceHolder="Select your team">
+          <nz-option *ngFor="let team of teams" nzValue={{team}} nzLabel={{team}}></nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="submitForm.get('team').dirty && submitForm.get('team').errors">Please select your team!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" nzFor="campaign" nzRequired>Campaign</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <nz-select id="campaign" formControlName="campaign" nzPlaceHolder="Select your campaign">
+          <nz-option *ngFor="let campaign of campaigns" nzValue={{campaign}} nzLabel={{campaign}}></nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="submitForm.get('campaign').dirty && submitForm.get('campaign').errors">Please select
+          your campaign!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button [disabled]="!submitForm.valid" nz-button class="login-form-button" [nzType]="'primary'">Share</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
 </div>
-</div>
+
+<nz-modal nzWrapClassName="vertical-center-modal" [(nzVisible)]="isLoginError" nzMaskClosable="false" nzClosable="false"
+  nzKeyboard="false" nzTitle="Authentication Error" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="isLoginError=false"
+  (nzOnCancel)="isLoginError=false">
+  <i class="anticon anticon-warning"></i><span class="error-msg">Please enter valid credentials</span>
+</nz-modal>

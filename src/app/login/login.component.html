@@ -1,44 +1,52 @@
-<div class="ui menu">
-  <a class="navbar-brand">
-    <img class="card-img-top ml-5" src="https://images-platform.99static.com/kE-xzGRaI6I55KiK_bruUEq7CPM=/0x0:1000x1000/500x500/top/smart/99designs-contests-attachments/90/90330/attachment_90330744"
-      style="width:80px;height:50px" />
-  </a>
-  <div class="right menu">
-    <a routerLink="/" class="item">Home</a>
-  </div>
-</div>
-
-
-<div class="ui grid" style="background: url('./../../../assets/home.jpg');height:100%;opacity:0.8;background-repeat: no-repeat;
-background-size: 100% 100%">
-  <div class="three column row">
-    <div class="column"></div>
-    <div class="column" style="margin-top:120px">
-      <h1 style="text-align: center;color:white">Sign In</h1>
-      <form class="ui form" [formGroup]="userForm">
-        <div class="field">
-          <label style="color:white;font-size: 20px">Email</label>
-          <input type="text" formControlName="email" [(ngModel)]="userDetails.email" placeholder="Email">
-          <div *ngIf="userForm.controls['email'].touched&&!userForm.controls['email'].valid">
-            <p>Enter a valid email address</p>
-          </div>
-        </div>
-        <div class="field">
-          <label style="color:white;font-size: 20px">Password</label>
-          <input type="{{inputType}}" style="float: left;width: 90%;height: 38px;" formControlName="password"
-            [(ngModel)]="userDetails.password" placeholder="Password">
-          <span (click)="tooglepwd()" style="background-color:white;height: 38px;float: left;width: 10%;border-radius: 4px 4px 4px 4px"
-            toggle="#password-field"><span style="margin-top: 13px;margin-left: 10px" class="fa fa-fw fa-eye field-icon toggle-password"></span></span>
-          <div *ngIf="userForm.controls['password'].touched&&!userForm.controls['password'].valid">
-            <p>Enter a valid password minmum 5 length</p>
-          </div>
-        </div>
-        <div class="field">
-          <p *ngIf="errorMessage">please enter correct email and password</p>
-        </div>
-        <button class="ui button" type="submit" (click)="onSubmit()" [disabled]="!userForm.valid">Login</button>
-      </form>
+<div class="top-container">
+  <div class="middle_content">
+    <div style="text-align:center;"><img style="border-radius:5px;margin:60% auto 10%;" src="./../../assets/images/og.png">
     </div>
-    <div class="column"></div>
+    <div class="login_div"><i class="anticon anticon-edit"></i> <span>
+        Login</span></div>
+    <form nz-form [formGroup]="userForm" class="login-form" (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzPrefix]="prefixEmailTemplate">
+            <input type="text" nz-input formControlName="email" placeholder="Email">
+          </nz-input-group>
+          <ng-template #prefixEmailTemplate><i nz-icon type="user"></i></ng-template>
+          <nz-form-explain *ngIf="userForm.get('email').dirty &&
+      userForm.get('email').errors">Please
+            enter
+            your Email!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group [nzPrefix]="prefixPasswordTemplate">
+            <input type="password" nz-input formControlName="password" placeholder="Password">
+          </nz-input-group>
+          <ng-template #prefixPasswordTemplate><i nz-icon type="lock"></i></ng-template>
+          <nz-form-explain *ngIf="userForm.get('password').dirty &&
+      userForm.get('password').errors">Please enter
+            your Password!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <!-- <label nz-checkbox formControlName="remember"
+      (ngModelChange)="rememberMeToggle($event)">
+                <span>Remember me</span>
+              </label>
+              <a class="login-form-forgot" class="login-form-forgot
+      forgot_password">Forgot password</a> -->
+          <button [disabled]="!userForm.valid" nz-button class="login-form-button" [nzType]="'primary'">Log in</button>
+
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
   </div>
 </div>
+
+<nz-modal nzWrapClassName="vertical-center-modal" [(nzVisible)]="isLoginError" nzMaskClosable="false" nzClosable="false"
+  nzKeyboard="false" nzTitle="Authentication Error" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="isLoginError=false"
+  (nzOnCancel)="isLoginError=false">
+  <i class="anticon anticon-warning"></i><span class="error-msg">Please enter valid credentials</span>
+</nz-modal>

@@ -21,6 +21,8 @@ import { AuthGuardService } from './shared/auth/auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import {AgmCoreModule } from '@agm/core';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,9 +45,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RouterModule.forRoot(routerConfig),
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyDZJVKjIZlbJd7rCgS8hyGV-ija8z11tjo'
-    })
+    }),
+    NgZorroAntdModule,
+    BrowserAnimationsModule
   ],
-  providers: [AuthService,AuthGuardService,ApiServiceService,CookieService,UserBaseService],
+  providers: [AuthService,AuthGuardService,ApiServiceService,CookieService,UserBaseService, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

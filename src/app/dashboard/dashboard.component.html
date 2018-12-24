@@ -1,22 +1,54 @@
-<div class="ui grid">
-    <div class="ui blue inverted fixed menu navbar page grid">
-    <p>Welcome {{storage?.user?.userName}}</p>
-    <div class="right menu">
-      <a href="" routerLink="/logout" class="item">Logout</a>
-    </div>
-  </div>
-</div>
-<br>
-<div class="container-fluid" style="background-color:#e9ecef;margin-top:35px">
-    <div class="row">
-        <div class="col-md-4" >
-            <app-section-2 [role]="role"></app-section-2>
+<nz-layout>
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate" style="overflow: auto; height: 100vh; position: fixed; left: 0">
+        <div (click)="home()" [ngClass]="isCollapsed ? 'logo_responsive' :'logo'">
         </div>
-        <div class="col-md-4">
-            <app-section-1 [role]="role"></app-section-1>
-        </div>
-        <div class="col-md-4">
-            <app-section-3 [role]="role"></app-section-3>
-        </div>
-    </div>
-</div>
+        <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item (click)="foo('section-2')">
+                <span><i nz-icon type="form"></i><span class="nav-text">Forms</span></span>
+            </li>
+            <li nz-menu-item (click)="foo('section-1')">
+                <span><i nz-icon type="database"></i><span class="nav-text">Posts</span></span>
+            </li>
+            <li nz-menu-item (click)="foo('section-3')">
+                <span><i nz-icon type="pie-chart"></i><span class="nav-text">Charts</span></span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout [ngClass]="isCollapsed ? 'nav2-style' :'nav1-style'">
+        <nz-header style="background: #fff; padding:0;">
+            <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
+            <span style="color: slategrey;"><b>Welcom {{storage?.user?.userName}}</b></span>
+            <button nz-button nzType="primary" routerLink="/logout"><i nz-icon type="poweroff"></i>Logout</button>
+        </nz-header>
+        <nz-content style="margin:24px 16px 0;overflow: initial">
+            <!-- <nz-breadcrumb style="margin:16px 0;">
+                <nz-breadcrumb-item>User</nz-breadcrumb-item>
+                <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+            </nz-breadcrumb> -->
+            <div style="padding: 24px; background: #fff; text-align: center">
+                <div *ngIf="!showSection && !noAccess">
+                    ...
+                <br />
+                Really
+                <br />...<br />...<br />...<br />
+                long
+                <br />...<br />...<br />...<br />...<br />...<br />...
+                <br />...<br />...<br />...<br />...<br />...<br />...
+                <br />...<br />...<br />...<br />...<br />...<br />...
+                <br />...<br />...<br />...<br />...<br />...<br />...
+                <br />...<br />...<br />...<br />...<br />...<br />...
+                <br />...<br />...<br />...<br />...<br />...<br />...
+                <br />...<br />...<br />...<br />...<br />...<br />
+                content
+                </div>
+                <app-section-2 *ngIf="showSection == 'section-1'" [role]="role"></app-section-2>
+                <app-section-1 *ngIf="showSection == 'section-2'" [role]="role"></app-section-1>
+                <app-section-3 *ngIf="showSection == 'section-3'" [role]="role"></app-section-3>
+                <div *ngIf="!showSection && noAccess">
+                        <i class="anticon anticon-warning"></i><span class="error-msg">You dont' have access to visit this section</span>
+                </div>
+            </div>
+        </nz-content>
+        <nz-footer style="text-align: center;">Company Name ©2018 Implement By Lella Chandu Sai</nz-footer>
+    </nz-layout>
+</nz-layout>
