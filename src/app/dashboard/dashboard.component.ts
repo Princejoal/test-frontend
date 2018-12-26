@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { CookieService } from '../shared/services/cookie.service';
 import { Router } from '@angular/router';
+import { UserBaseService } from '../shared/services/user-base.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +11,20 @@ import { Router } from '@angular/router';
 
 export class DashboardComponent implements OnInit {
   cookie: any;
-  storage: any;
   role: any;
   isCollapsed = false;
   triggerTemplate = null;
   noAccess = false
   @ViewChild('trigger') customTrigger: TemplateRef<void>;
   showSection: string;
-  constructor(public cookieService:CookieService, public router :Router) { }
+  user: any;
+  constructor(public cookieService:CookieService, public router :Router, public userService:UserBaseService) { }
 
   ngOnInit() {
     this.cookie = this.cookieService.readCookie('storage');
-    this.storage = this.cookie != null ? JSON.parse(this.cookie) : '';
-    this.role = this.storage.user ? this.storage.user.role : '';
+    const storage = this.cookie != null ? JSON.parse(this.cookie) : '';
+    this.user = this.userService.decodeToken(storage.token);
+    this.role = this.user ? this.user.role : '';
   }
   changeTrigger(): void {
     this.triggerTemplate = this.customTrigger;

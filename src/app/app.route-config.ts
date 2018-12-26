@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import {  AuthGuardService as AuthGuard } from './shared/auth/auth-guard.service';
+import {  TokenGuardService as TokenGuard } from './shared/auth/token-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
 export const routerConfig: Routes = [

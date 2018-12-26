@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
     this.userbaseService.login(this.userForm.value).subscribe((response) => {
       if (response.success) {
         let storage = {
-          token: response.token,
-          user: response.user
+          token: response.token
         }
         this.cookieService.createCookie('storage', JSON.stringify(storage), 3);
         this.router.navigateByUrl('/dashboard')

@@ -17,7 +17,7 @@
     <nz-layout [ngClass]="isCollapsed ? 'nav2-style' :'nav1-style'">
         <nz-header style="background: #fff; padding:0;">
             <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
-            <span style="color: slategrey;"><b>Welcom {{storage?.user?.userName}}</b></span>
+            <span style="color: slategrey;"><b>Welcome {{user?.userName}}</b></span>
             <button nz-button nzType="primary" routerLink="/logout"><i nz-icon type="poweroff"></i>Logout</button>
         </nz-header>
         <nz-content style="margin:24px 16px 0;overflow: initial">

@@ -23,6 +23,7 @@ import {AgmCoreModule } from '@agm/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TokenGuardService } from './shared/auth/token-guard.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgZorroAntdModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService,AuthGuardService,ApiServiceService,CookieService,UserBaseService, { provide: NZ_I18N, useValue: en_US }],
+  providers: [AuthService,AuthGuardService,ApiServiceService,CookieService,UserBaseService, { provide: NZ_I18N, useValue: en_US }, TokenGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
