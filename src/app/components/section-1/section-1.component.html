@@ -1,4 +1,4 @@
-<div *ngIf="showComponent" class="ui very padded container segment" style=" margin-top: 5%;overflow:scroll;height:600px">
+<!-- <div *ngIf="showComponent" class="ui very padded container segment" style=" margin-top: 5%;overflow:scroll;height:600px">
   <h1>Registered Teams</h1>
   <div class="ui items">
     <div class="item" *ngFor="let post of posts  | paginate: { itemsPerPage: 3, currentPage: p }">
@@ -15,4 +15,28 @@
     </div>
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
-</div>
+</div> -->
+
+
+
+<nz-table #basicTable [nzData]="dataSet">
+  <thead>
+    <tr>
+      <th>Organization Name</th>
+      <th>Description</th>
+      <th>Team</th>
+      <th>Campaign</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts">
+      <td  nz-col [nzSpan]="8">{{post.name}}</td>
+      <td nz-col [nzSpan]="8">{{post.description}}</td>
+      <td nz-col [nzSpan]="4">{{post.team}}</td>
+      <td nz-col [nzSpan]="4">{{post.campaign}}</td>
+    </tr>
+  </tbody>
+</nz-table>
+<nz-pagination [(nzPageIndex)]="current" [nzTotal]="50" [nzSize]="'big'" nzShowSizeChanger nzShowQuickJumper>
+  
+</nz-pagination>
